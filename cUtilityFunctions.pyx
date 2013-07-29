@@ -33,16 +33,14 @@ def genspecsines(iploc, ipmag, ipphase,N):
 	cdef np.ndarray[np.float_t, ndim=1] ipphase_arr
 	cdef np.ndarray[np.float_t, ndim=1] real_arr
 	cdef np.ndarray[np.float_t, ndim=1] imag_arr
-	#cdef np.ndarray[np.complex, ndim=1] out_arr
-	
+		
 	iploc_arr = np.ascontiguousarray(iploc, dtype=np.float)
 	ipmag_arr = np.ascontiguousarray(ipmag, dtype=np.float)
 	ipphase_arr = np.ascontiguousarray(ipphase, dtype=np.float)
 	
-	real_arr = np.empty((N,), dtype=np.float)
-	imag_arr = np.empty((N,), dtype=np.float)
-	#out_arr = np.empty((N,), dtype=np.complex)
-	
+	real_arr = np.zeros((N,), dtype=np.float)
+	imag_arr = np.zeros((N,), dtype=np.float)
+		
 	genspecsines_C(<double *>iploc_arr.data, <double *>ipmag_arr.data, <double *>ipphase_arr.data, iploc_arr.shape[0],  <double *>real_arr.data,  <double *>imag_arr.data, N)
 	
 	out = real_arr.astype(complex)

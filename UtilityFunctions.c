@@ -1060,12 +1060,12 @@ void genspecsines_C(double *iploc, double *ipmag, double *ipphase, int n_peaks, 
 				}
 				else if (ploc_int+jj==0)
 				{
-					real[(ploc_int+jj)] = 2*mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
+					real[(ploc_int+jj)] += 2*mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
 				}
 				else
 				{
-					real[(ploc_int+jj)] = mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
-					imag[ploc_int+jj] = mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*sin(ipphase[ii]);
+					real[(ploc_int+jj)] += mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
+					imag[ploc_int+jj] += mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*sin(ipphase[ii]);
 				}
 			}
 		}
@@ -1077,19 +1077,19 @@ void genspecsines_C(double *iploc, double *ipmag, double *ipphase, int n_peaks, 
 			{
 				if(ploc_int+jj>size_spec_half)
 				{
-					real[size_spec-(ploc_int+jj)] = mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
-					imag[size_spec-(ploc_int+jj)] = -1*mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*sin(ipphase[ii]);
+					real[size_spec-(ploc_int+jj)] += mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
+					imag[size_spec-(ploc_int+jj)] += -1*mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*sin(ipphase[ii]);
 					
 				}
 				else if(ploc_int+jj==size_spec_half)
 				{
-					real[(ploc_int+jj)] = 2*mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
+					real[(ploc_int+jj)] += 2*mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
 					
 				}				
 				else
 				{
-					real[(ploc_int+jj)] = mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
-					imag[ploc_int+jj] = mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*sin(ipphase[ii]);
+					real[(ploc_int+jj)] += mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*cos(ipphase[ii]);
+					imag[ploc_int+jj] += mag*bh_92_1001[(int)((bin_remainder+jj)*100) + BH_SIZE_BY2]*sin(ipphase[ii]);
 				}
 			}
 		}
@@ -1101,7 +1101,7 @@ void genspecsines_C(double *iploc, double *ipmag, double *ipphase, int n_peaks, 
 		real[size_spec_half+ii]=real[size_spec_half-ii];
 		imag[size_spec_half+ii]=-1*imag[size_spec_half-ii];		
 	}
-	
+
 }
 
 
